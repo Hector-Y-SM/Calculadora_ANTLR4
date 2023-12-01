@@ -1,5 +1,7 @@
 body {
-  background-color: black;
+  background-color: #1c1c1c; 
+  color: white; 
+  margin: 0;
 }
 
 .div_main {
@@ -10,33 +12,34 @@ body {
 }
 
 .section_calculadora {
-  min-width: 400px; 
-  background-color: #f0f0f0;
+  background-color: #282828;
   border-radius: 10px;
-  padding: 4vw; 
+  padding: 4vw;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .input_ {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 1vw; 
+  margin-bottom: 10px;
 }
 
 .txtArea_ {
   flex: 1;
-  width: 100%;
-  padding: 1vw;
-  margin-right: 3vw;
-  border: 1px solid #ccc;
+  width: 20%;
+  height: 100px;
+  padding: 10px;
+  margin-right: 1vw;
+  border: 1px solid #505050;
+  color: #1c1c1c;
   border-radius: 4px;
   resize: none;
 }
 
 .btn_digito {
-  width: 17%;
-  padding: 1.2vw; 
-  background-color: #ff4d4d;
+  width: 20%;
+  padding: 2vw;
   color: white;
   border: none;
   border-radius: 4px;
@@ -46,18 +49,19 @@ body {
 .div_btn {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2vw; 
+  gap: 10px;
 }
 
 .div_btn button {
   width: 100%;
-  padding: 1.2vw;
-  color: black;
+  padding: 2vw;
+  color: white;
+  background-color: #555; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .div_btn button:hover {
-  background-color: #ccc;
+  background-color: #777; 
 }
