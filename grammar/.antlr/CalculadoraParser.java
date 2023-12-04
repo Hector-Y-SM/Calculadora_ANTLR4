@@ -16,7 +16,8 @@ public class CalculadoraParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PLUS=1, MINUS=2, TIMES=3, DIV=4, NUMBER=5, SPACES=6;
+		T__0=1, T__1=2, PLUS=3, MINUS=4, TIMES=5, DIV=6, NUMBER=7, DECIMAL=8, 
+		SPACES=9;
 	public static final int
 		RULE_file = 0, RULE_expr = 1;
 	private static String[] makeRuleNames() {
@@ -28,13 +29,14 @@ public class CalculadoraParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'+'", "'-'", "'*'", "'/'"
+			null, "'('", "')'", "'+'", "'-'", "'*'", "'/'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PLUS", "MINUS", "TIMES", "DIV", "NUMBER", "SPACES"
+			null, null, null, "PLUS", "MINUS", "TIMES", "DIV", "NUMBER", "DECIMAL", 
+			"SPACES"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -122,7 +124,7 @@ public class CalculadoraParser extends Parser {
 				setState(7); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==NUMBER );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 386L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -167,6 +169,11 @@ public class CalculadoraParser extends Parser {
 		public NumberContext(ExprContext ctx) { copyFrom(ctx); }
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class DecimalContext extends ExprContext {
+		public TerminalNode DECIMAL() { return getToken(CalculadoraParser.DECIMAL, 0); }
+		public DecimalContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class PlusSubtractionContext extends ExprContext {
 		public Token operation;
 		public List<ExprContext> expr() {
@@ -178,6 +185,13 @@ public class CalculadoraParser extends Parser {
 		public TerminalNode PLUS() { return getToken(CalculadoraParser.PLUS, 0); }
 		public TerminalNode MINUS() { return getToken(CalculadoraParser.MINUS, 0); }
 		public PlusSubtractionContext(ExprContext ctx) { copyFrom(ctx); }
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class ParenthesisContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public ParenthesisContext(ExprContext ctx) { copyFrom(ctx); }
 	}
 
 	public final ExprContext expr() throws RecognitionException {
@@ -196,33 +210,63 @@ public class CalculadoraParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			{
-			_localctx = new NumberContext(_localctx);
-			_ctx = _localctx;
-			_prevctx = _localctx;
+			setState(16);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__0:
+				{
+				_localctx = new ParenthesisContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 
-			setState(10);
-			match(NUMBER);
+				setState(10);
+				match(T__0);
+				setState(11);
+				expr(0);
+				setState(12);
+				match(T__1);
+				}
+				break;
+			case NUMBER:
+				{
+				_localctx = new NumberContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(14);
+				match(NUMBER);
+				}
+				break;
+			case DECIMAL:
+				{
+				_localctx = new DecimalContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(15);
+				match(DECIMAL);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(20);
+			setState(26);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(18);
+					setState(24);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 					case 1:
 						{
 						_localctx = new TimesDivContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(12);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(13);
+						setState(18);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						setState(19);
 						((TimesDivContext)_localctx).operation = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==TIMES || _la==DIV) ) {
@@ -233,17 +277,17 @@ public class CalculadoraParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(14);
-						expr(4);
+						setState(20);
+						expr(5);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new PlusSubtractionContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(15);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(16);
+						setState(21);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(22);
 						((PlusSubtractionContext)_localctx).operation = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==PLUS || _la==MINUS) ) {
@@ -254,16 +298,16 @@ public class CalculadoraParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(17);
-						expr(3);
+						setState(23);
+						expr(4);
 						}
 						break;
 					}
 					} 
 				}
-				setState(22);
+				setState(28);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
 			}
 		}
@@ -288,32 +332,37 @@ public class CalculadoraParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 3);
+			return precpred(_ctx, 4);
 		case 1:
-			return precpred(_ctx, 2);
+			return precpred(_ctx, 3);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0006\u0018\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0001\u0000\u0004\u0000\u0006\b\u0000\u000b\u0000\f\u0000\u0007\u0001"+
+		"\u0004\u0001\t\u001e\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0001"+
+		"\u0000\u0004\u0000\u0006\b\u0000\u000b\u0000\f\u0000\u0007\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0005\u0001\u0013\b\u0001\n\u0001\f\u0001"+
-		"\u0016\t\u0001\u0001\u0001\u0000\u0001\u0002\u0002\u0000\u0002\u0000\u0002"+
-		"\u0001\u0000\u0003\u0004\u0001\u0000\u0001\u0002\u0018\u0000\u0005\u0001"+
-		"\u0000\u0000\u0000\u0002\t\u0001\u0000\u0000\u0000\u0004\u0006\u0003\u0002"+
-		"\u0001\u0000\u0005\u0004\u0001\u0000\u0000\u0000\u0006\u0007\u0001\u0000"+
-		"\u0000\u0000\u0007\u0005\u0001\u0000\u0000\u0000\u0007\b\u0001\u0000\u0000"+
-		"\u0000\b\u0001\u0001\u0000\u0000\u0000\t\n\u0006\u0001\uffff\uffff\u0000"+
-		"\n\u000b\u0005\u0005\u0000\u0000\u000b\u0014\u0001\u0000\u0000\u0000\f"+
-		"\r\n\u0003\u0000\u0000\r\u000e\u0007\u0000\u0000\u0000\u000e\u0013\u0003"+
-		"\u0002\u0001\u0004\u000f\u0010\n\u0002\u0000\u0000\u0010\u0011\u0007\u0001"+
-		"\u0000\u0000\u0011\u0013\u0003\u0002\u0001\u0003\u0012\f\u0001\u0000\u0000"+
-		"\u0000\u0012\u000f\u0001\u0000\u0000\u0000\u0013\u0016\u0001\u0000\u0000"+
-		"\u0000\u0014\u0012\u0001\u0000\u0000\u0000\u0014\u0015\u0001\u0000\u0000"+
-		"\u0000\u0015\u0003\u0001\u0000\u0000\u0000\u0016\u0014\u0001\u0000\u0000"+
-		"\u0000\u0003\u0007\u0012\u0014";
+		"\u0003\u0001\u0011\b\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0005\u0001\u0019\b\u0001\n\u0001\f\u0001\u001c"+
+		"\t\u0001\u0001\u0001\u0000\u0001\u0002\u0002\u0000\u0002\u0000\u0002\u0001"+
+		"\u0000\u0005\u0006\u0001\u0000\u0003\u0004 \u0000\u0005\u0001\u0000\u0000"+
+		"\u0000\u0002\u0010\u0001\u0000\u0000\u0000\u0004\u0006\u0003\u0002\u0001"+
+		"\u0000\u0005\u0004\u0001\u0000\u0000\u0000\u0006\u0007\u0001\u0000\u0000"+
+		"\u0000\u0007\u0005\u0001\u0000\u0000\u0000\u0007\b\u0001\u0000\u0000\u0000"+
+		"\b\u0001\u0001\u0000\u0000\u0000\t\n\u0006\u0001\uffff\uffff\u0000\n\u000b"+
+		"\u0005\u0001\u0000\u0000\u000b\f\u0003\u0002\u0001\u0000\f\r\u0005\u0002"+
+		"\u0000\u0000\r\u0011\u0001\u0000\u0000\u0000\u000e\u0011\u0005\u0007\u0000"+
+		"\u0000\u000f\u0011\u0005\b\u0000\u0000\u0010\t\u0001\u0000\u0000\u0000"+
+		"\u0010\u000e\u0001\u0000\u0000\u0000\u0010\u000f\u0001\u0000\u0000\u0000"+
+		"\u0011\u001a\u0001\u0000\u0000\u0000\u0012\u0013\n\u0004\u0000\u0000\u0013"+
+		"\u0014\u0007\u0000\u0000\u0000\u0014\u0019\u0003\u0002\u0001\u0005\u0015"+
+		"\u0016\n\u0003\u0000\u0000\u0016\u0017\u0007\u0001\u0000\u0000\u0017\u0019"+
+		"\u0003\u0002\u0001\u0004\u0018\u0012\u0001\u0000\u0000\u0000\u0018\u0015"+
+		"\u0001\u0000\u0000\u0000\u0019\u001c\u0001\u0000\u0000\u0000\u001a\u0018"+
+		"\u0001\u0000\u0000\u0000\u001a\u001b\u0001\u0000\u0000\u0000\u001b\u0003"+
+		"\u0001\u0000\u0000\u0000\u001c\u001a\u0001\u0000\u0000\u0000\u0004\u0007"+
+		"\u0010\u0018\u001a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

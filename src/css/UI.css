@@ -27,7 +27,7 @@ body {
 
 .txtArea_ {
   flex: 1;
-  width: 20%;
+  width: 30%;
   height: 100px;
   padding: 10px;
   margin-right: 1vw;
@@ -64,4 +64,12 @@ body {
 
 .div_btn button:hover {
   background-color: #777; 
+}
+
+.h1_error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: red;
 }

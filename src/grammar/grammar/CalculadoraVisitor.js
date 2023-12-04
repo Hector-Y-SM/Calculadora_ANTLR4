@@ -24,8 +24,20 @@ export default class CalculadoraVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
+	// Visit a parse tree produced by CalculadoraParser#decimal.
+	visitDecimal(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
 	// Visit a parse tree produced by CalculadoraParser#plusSubtraction.
 	visitPlusSubtraction(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by CalculadoraParser#parenthesis.
+	visitParenthesis(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
