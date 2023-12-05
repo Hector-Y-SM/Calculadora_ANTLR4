@@ -37,7 +37,6 @@ const UI = ({input, ext, limpiarCaracter, numBtn, limpiarTodo, click, error, his
           <button onClick={() => numBtn('9')}>9</button>
           <button onClick={() => numBtn('*')}>*</button>
           <button onClick={historial}>H</button>
-
           <button onClick={() => numBtn('0')}>0</button>
           <button onClick={() => numBtn('.')}>.</button>
           <button onClick={click}>=</button>

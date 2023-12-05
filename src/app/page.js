@@ -8,13 +8,14 @@ const HomePage = () => {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
 
-
   const click = () => {
     const letras = /[a-zA-Z]+$/g //? expresion regular para evitar letras
+    //const validaciones = /^(\d+|\([^()]+\))(?:[\+\-\*/]?(\d+|\([^()]+\)))*$/g
+
     //console.log(input); 
       if (letras.test(input) || input.trim() === ''){
          setInput('');
-         setError('Ingresa una operacion')
+         setError('Ingresa una operacion');
       } else {
         setError('');
         const limpiar = comentarios(input).trim(); //borrar los espacios en blanco para evitar errores
