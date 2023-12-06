@@ -3,18 +3,18 @@ grammar Calculadora;
 file: expr+;          
 
 expr:
-        expr operation=(TIMES|DIV) expr     #timesDiv
+        OPEN expr CLOSE      #parenthesis
         | 
-        expr operation=(PLUS|MINUS) expr    #plusSubtraction
+        OPEN expr operation=DEFAULT expr CLOSE     #default
         |  
         OPEN expr operation=CLOSE expr #reverse
         |
         expr operation=OPEN expr CLOSE #normal
+        | 
+        expr operation=(TIMES|DIV) expr     #timesDiv
+        | 
+        expr operation=(PLUS|MINUS) expr    #plusSubtraction
         |
-        OPEN expr CLOSE      #parenthesis
-        | 
-        OPEN expr operation=DEFAULT expr CLOSE     #default
-        | 
         NUMBER   #number
         | 
         DECIMAL #decimal

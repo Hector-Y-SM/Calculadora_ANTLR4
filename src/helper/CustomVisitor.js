@@ -16,8 +16,10 @@ export default class CustomVisitor extends CalculadoraVisitor {
     const num1 = this.visit(ctx.expr(0)); //sacar los valores de los numeros
     const num2 = this.visit(ctx.expr(1));
     if (ctx.operation.type == 4) {
+      console.log('multiplicacion')
       return num1 * num2;
     } 
+    console.log('division')
     return num1 / num2;
 	}
 
@@ -27,14 +29,16 @@ export default class CustomVisitor extends CalculadoraVisitor {
     const num1 = this.visit(ctx.expr(0)); 
     const num2 = this.visit(ctx.expr(1));
     if (ctx.operation.type == 1){ //suma
+      console.log('tenemos suma')
       return num1 + num2;
     }
+    console.log('tenemos resta')
     return num1 - num2;     //resta
 	}
 
   // Visit a parse tree produced by CalculadoraParser#default.
 	visitDefault(ctx) {
-    //console.log('default')
+    console.log('default')
     const num1 = this.visit(ctx.expr(0));
     const num2 = this.visit(ctx.expr(1));
     if (ctx.operation.type == 2){
@@ -44,7 +48,7 @@ export default class CustomVisitor extends CalculadoraVisitor {
 
   // Visit a parse tree produced by CalculadoraParser#normal.
 	visitNormal(ctx) {
-    //console.log('normal')
+    console.log('normal')
 	  const num1 = this.visit(ctx.expr(0)); 
     const num2 = this.visit(ctx.expr(1));
     if(ctx.operation.type == 6){ return num1 * num2; }  
@@ -52,7 +56,7 @@ export default class CustomVisitor extends CalculadoraVisitor {
 
   // Visit a parse tree produced by CalculadoraParser#reverse.
 	visitReverse(ctx) {
-    //console.log('reversa');
+    console.log('reversa');
     const num1 = this.visit(ctx.expr(0));
     const num2 = this.visit(ctx.expr(1));
 	  if(ctx.operation.type == 7){
@@ -61,20 +65,22 @@ export default class CustomVisitor extends CalculadoraVisitor {
 	}
 
   // Visit a parse tree produced by CalculadoraParser#parentheses.
-  visitParenthesis(ctx) {  
+  visitParenthesis(ctx) { 
+    console.log('parentesis') 
     const num1 = this.visit(ctx.expr(0)); //obtener resultado
     return Number(num1);  
 	}
 
   // Visit a parse tree produced by CalculadoraParser#number.
 	visitNumber(ctx) {
-    //console.log('Visit Number')
+    console.log('Visit Number')
+    console.log(ctx.getText());
 	  return Number(ctx.getText()); // retornamos el valor 
 	}
 
   // Visit a parse tree produced by CalculadoraParser#decimal.
 	visitDecimal(ctx) {
-    //console.log('decimal')
+    console.log('decimal')
 	  return Number(ctx.getText());
 	}
 }
