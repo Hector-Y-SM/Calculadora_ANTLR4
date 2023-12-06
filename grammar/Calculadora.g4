@@ -7,13 +7,17 @@ expr:
         | 
         expr operation=(PLUS|MINUS) expr    #plusSubtraction
         | 
-        '('expr operation=(TIMES|DIV) expr')' #timesDiv1
+        OPEN expr operation=(TIMES|DIV) expr CLOSE #timesDiv1
         | 
-        '('expr operation=(PLUS|MINUS) expr')'#plusSubtraction1
+        OPEN expr operation=(PLUS|MINUS) expr CLOSE #plusSubtraction1
         | 
-        '('expr')'      #parenthesis
+        OPEN expr operation=CLOSE expr #reverse
+        |
+        expr operation=OPEN expr CLOSE #normal
+        |
+        OPEN expr CLOSE      #parenthesis
         | 
-        '('expr operation=DEFAULT expr')'     #default
+        OPEN expr operation=DEFAULT expr CLOSE     #default
         | 
         NUMBER   #number
         | 
@@ -25,6 +29,8 @@ DEFAULT :   ')(' ;
 MINUS   :   '-'  ;
 TIMES   :   '*'  ;
 DIV     :   '/'  ;
+OPEN    :   '('  ;
+CLOSE   :   ')'  ;
 NUMBER  :   [0-9]+;
 DECIMAL :   [0-9]+'.'[0-9]+;
 SPACES  :   [ \t\r\n]+ -> skip;

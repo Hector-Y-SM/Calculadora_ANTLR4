@@ -16,7 +16,7 @@ public class CalculadoraLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, PLUS=3, DEFAULT=4, MINUS=5, TIMES=6, DIV=7, NUMBER=8, 
+		PLUS=1, DEFAULT=2, MINUS=3, TIMES=4, DIV=5, OPEN=6, CLOSE=7, NUMBER=8, 
 		DECIMAL=9, SPACES=10;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
@@ -28,7 +28,7 @@ public class CalculadoraLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"T__0", "T__1", "PLUS", "DEFAULT", "MINUS", "TIMES", "DIV", "NUMBER", 
+			"PLUS", "DEFAULT", "MINUS", "TIMES", "DIV", "OPEN", "CLOSE", "NUMBER", 
 			"DECIMAL", "SPACES"
 		};
 	}
@@ -36,13 +36,13 @@ public class CalculadoraLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'('", "')'", "'+'", "')('", "'-'", "'*'", "'/'"
+			null, "'+'", "')('", "'-'", "'*'", "'/'", "'('", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, "PLUS", "DEFAULT", "MINUS", "TIMES", "DIV", "NUMBER", 
+			null, "PLUS", "DEFAULT", "MINUS", "TIMES", "DIV", "OPEN", "CLOSE", "NUMBER", 
 			"DECIMAL", "SPACES"
 		};
 	}
@@ -109,7 +109,7 @@ public class CalculadoraLexer extends Lexer {
 		"\u0007\u0001\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004"+
 		"\u0007\u0004\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007"+
 		"\u0007\u0007\u0002\b\u0007\b\u0002\t\u0007\t\u0001\u0000\u0001\u0000\u0001"+
-		"\u0001\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0003\u0001"+
 		"\u0003\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0006\u0001"+
 		"\u0006\u0001\u0007\u0004\u0007&\b\u0007\u000b\u0007\f\u0007\'\u0001\b"+
 		"\u0004\b+\b\b\u000b\b\f\b,\u0001\b\u0001\b\u0004\b1\b\b\u000b\b\f\b2\u0001"+
@@ -122,16 +122,16 @@ public class CalculadoraLexer extends Lexer {
 		"\u0000\r\u0001\u0000\u0000\u0000\u0000\u000f\u0001\u0000\u0000\u0000\u0000"+
 		"\u0011\u0001\u0000\u0000\u0000\u0000\u0013\u0001\u0000\u0000\u0000\u0001"+
 		"\u0015\u0001\u0000\u0000\u0000\u0003\u0017\u0001\u0000\u0000\u0000\u0005"+
-		"\u0019\u0001\u0000\u0000\u0000\u0007\u001b\u0001\u0000\u0000\u0000\t\u001e"+
+		"\u001a\u0001\u0000\u0000\u0000\u0007\u001c\u0001\u0000\u0000\u0000\t\u001e"+
 		"\u0001\u0000\u0000\u0000\u000b \u0001\u0000\u0000\u0000\r\"\u0001\u0000"+
 		"\u0000\u0000\u000f%\u0001\u0000\u0000\u0000\u0011*\u0001\u0000\u0000\u0000"+
-		"\u00135\u0001\u0000\u0000\u0000\u0015\u0016\u0005(\u0000\u0000\u0016\u0002"+
-		"\u0001\u0000\u0000\u0000\u0017\u0018\u0005)\u0000\u0000\u0018\u0004\u0001"+
-		"\u0000\u0000\u0000\u0019\u001a\u0005+\u0000\u0000\u001a\u0006\u0001\u0000"+
-		"\u0000\u0000\u001b\u001c\u0005)\u0000\u0000\u001c\u001d\u0005(\u0000\u0000"+
-		"\u001d\b\u0001\u0000\u0000\u0000\u001e\u001f\u0005-\u0000\u0000\u001f"+
-		"\n\u0001\u0000\u0000\u0000 !\u0005*\u0000\u0000!\f\u0001\u0000\u0000\u0000"+
-		"\"#\u0005/\u0000\u0000#\u000e\u0001\u0000\u0000\u0000$&\u0007\u0000\u0000"+
+		"\u00135\u0001\u0000\u0000\u0000\u0015\u0016\u0005+\u0000\u0000\u0016\u0002"+
+		"\u0001\u0000\u0000\u0000\u0017\u0018\u0005)\u0000\u0000\u0018\u0019\u0005"+
+		"(\u0000\u0000\u0019\u0004\u0001\u0000\u0000\u0000\u001a\u001b\u0005-\u0000"+
+		"\u0000\u001b\u0006\u0001\u0000\u0000\u0000\u001c\u001d\u0005*\u0000\u0000"+
+		"\u001d\b\u0001\u0000\u0000\u0000\u001e\u001f\u0005/\u0000\u0000\u001f"+
+		"\n\u0001\u0000\u0000\u0000 !\u0005(\u0000\u0000!\f\u0001\u0000\u0000\u0000"+
+		"\"#\u0005)\u0000\u0000#\u000e\u0001\u0000\u0000\u0000$&\u0007\u0000\u0000"+
 		"\u0000%$\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000\'%\u0001\u0000"+
 		"\u0000\u0000\'(\u0001\u0000\u0000\u0000(\u0010\u0001\u0000\u0000\u0000"+
 		")+\u0007\u0000\u0000\u0000*)\u0001\u0000\u0000\u0000+,\u0001\u0000\u0000"+

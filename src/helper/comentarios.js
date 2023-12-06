@@ -6,26 +6,11 @@
  */
 
 export function comentarios(text) {
-  const lineas = text.split('\n');
-  let dentroBloqueComentario = false;
-
-  const lineasSinComentarios = lineas.filter(linea => {
-      if (linea.includes('/*')) {
-          dentroBloqueComentario = true;
-          return false;
-      }
-
-      if (linea.includes('*/')) {
-          dentroBloqueComentario = false;
-          return false;
-      }
-
-      if (dentroBloqueComentario) {
-          return false;
-      }
-
-      return !linea.trim().startsWith('//');
-  });
-
-  return lineasSinComentarios.join('\n');
-}
+    //? comentarios de línea
+    let sinComentarios = text.replace(/\/\/.*/g, '');
+  
+    //? comentarios de bloque
+    sinComentarios = sinComentarios.replace(/\/\*[\s\S]*?\*\//g, '');
+  
+    return sinComentarios;
+  }

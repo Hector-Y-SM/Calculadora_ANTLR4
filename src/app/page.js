@@ -9,28 +9,27 @@ const HomePage = () => {
   const [error, setError] = useState('');
 
   const click = () => {
-    const letras = /[a-zA-Z]+$/g //? expresion regular para evitar letras
-    //const validaciones = /^(\d+|\([^()]+\))(?:[\+\-\*/]?(\d+|\([^()]+\)))*$/g
-
+    const letras = /[a-zA-Z]+$/g //? expresion regular para evitar letras  
+  //const validaciones = /^(\d+|\([^()]+\))(?:[-+*/](\d+|\([^()]+\)))*$/g;
     //console.log(input); 
-      if (letras.test(input) || input.trim() === ''){
+    
+      if (letras.test(input) || comentarios(input.trim()) === ''){
          setInput('');
          setError('Ingresa una operacion');
       } else {
+        //console.log('si entro')
         setError('');
         const limpiar = comentarios(input).trim(); //borrar los espacios en blanco para evitar errores
-  
-        // Modifica la expresión regular para reconocer divisiones
+
         const expresiones = limpiar.split('\n');
         const aux = expresiones.map(expresion => analizarLexico(expresion));
   
-        // Construye la cadena con el resultado para cada expresión
         const resultadoCadena = aux.map((valor, indice) => {
           return `${expresiones[indice]} = ${valor}`;
         });
   
         setInput(resultadoCadena.join('\n'));
-    }
+    } 
   }
   
   const limpiarTodo = () => { 
