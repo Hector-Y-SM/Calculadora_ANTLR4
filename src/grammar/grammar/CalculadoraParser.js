@@ -8,13 +8,13 @@ const serializedATN = [4,1,10,46,2,0,7,0,2,1,7,1,1,0,4,0,6,8,0,11,0,12,0,
 1,3,1,28,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,41,8,1,10,1,
 12,1,44,9,1,1,1,0,1,2,2,0,2,0,2,1,0,4,5,2,0,1,1,3,3,51,0,5,1,0,0,0,2,27,
 1,0,0,0,4,6,3,2,1,0,5,4,1,0,0,0,6,7,1,0,0,0,7,5,1,0,0,0,7,8,1,0,0,0,8,1,
-1,0,0,0,9,10,6,1,-1,0,10,11,5,6,0,0,11,12,3,2,1,0,12,13,5,7,0,0,13,28,1,
-0,0,0,14,15,5,6,0,0,15,16,3,2,1,0,16,17,5,2,0,0,17,18,3,2,1,0,18,19,5,7,
-0,0,19,28,1,0,0,0,20,21,5,6,0,0,21,22,3,2,1,0,22,23,5,7,0,0,23,24,3,2,1,
-6,24,28,1,0,0,0,25,28,5,8,0,0,26,28,5,9,0,0,27,9,1,0,0,0,27,14,1,0,0,0,27,
-20,1,0,0,0,27,25,1,0,0,0,27,26,1,0,0,0,28,42,1,0,0,0,29,30,10,4,0,0,30,31,
+1,0,0,0,9,10,6,1,-1,0,10,11,5,6,0,0,11,12,3,2,1,0,12,13,5,7,0,0,13,14,3,
+2,1,8,14,28,1,0,0,0,15,16,5,6,0,0,16,17,3,2,1,0,17,18,5,2,0,0,18,19,3,2,
+1,0,19,20,5,7,0,0,20,28,1,0,0,0,21,22,5,6,0,0,22,23,3,2,1,0,23,24,5,7,0,
+0,24,28,1,0,0,0,25,28,5,8,0,0,26,28,5,9,0,0,27,9,1,0,0,0,27,15,1,0,0,0,27,
+21,1,0,0,0,27,25,1,0,0,0,27,26,1,0,0,0,28,42,1,0,0,0,29,30,10,4,0,0,30,31,
 7,0,0,0,31,41,3,2,1,5,32,33,10,3,0,0,33,34,7,1,0,0,34,41,3,2,1,4,35,36,10,
-5,0,0,36,37,5,6,0,0,37,38,3,2,1,0,38,39,5,7,0,0,39,41,1,0,0,0,40,29,1,0,
+7,0,0,36,37,5,6,0,0,37,38,3,2,1,0,38,39,5,7,0,0,39,41,1,0,0,0,40,29,1,0,
 0,0,40,32,1,0,0,0,40,35,1,0,0,0,41,44,1,0,0,0,42,40,1,0,0,0,42,43,1,0,0,
 0,43,3,1,0,0,0,44,42,1,0,0,0,4,7,27,40,42];
 
@@ -59,7 +59,7 @@ export default class CalculadoraParser extends antlr4.Parser {
     		case 1:
     			return this.precpred(this._ctx, 3);
     		case 2:
-    			return this.precpred(this._ctx, 5);
+    			return this.precpred(this._ctx, 7);
     		default:
     			throw "No predicate with index:" + predIndex;
     	}
@@ -117,7 +117,7 @@ export default class CalculadoraParser extends antlr4.Parser {
 	        var la_ = this._interp.adaptivePredict(this._input,1,this._ctx);
 	        switch(la_) {
 	        case 1:
-	            localctx = new ParenthesisContext(this, localctx);
+	            localctx = new ReverseContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
 
@@ -126,37 +126,37 @@ export default class CalculadoraParser extends antlr4.Parser {
 	            this.state = 11;
 	            this.expr(0);
 	            this.state = 12;
-	            this.match(CalculadoraParser.CLOSE);
+	            localctx.operation = this.match(CalculadoraParser.CLOSE);
+	            this.state = 13;
+	            this.expr(8);
 	            break;
 
 	        case 2:
 	            localctx = new DefaultContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 14;
-	            this.match(CalculadoraParser.OPEN);
 	            this.state = 15;
-	            this.expr(0);
+	            this.match(CalculadoraParser.OPEN);
 	            this.state = 16;
-	            localctx.operation = this.match(CalculadoraParser.DEFAULT);
-	            this.state = 17;
 	            this.expr(0);
+	            this.state = 17;
+	            localctx.operation = this.match(CalculadoraParser.DEFAULT);
 	            this.state = 18;
+	            this.expr(0);
+	            this.state = 19;
 	            this.match(CalculadoraParser.CLOSE);
 	            break;
 
 	        case 3:
-	            localctx = new ReverseContext(this, localctx);
+	            localctx = new ParenthesisContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 20;
-	            this.match(CalculadoraParser.OPEN);
 	            this.state = 21;
-	            this.expr(0);
+	            this.match(CalculadoraParser.OPEN);
 	            this.state = 22;
-	            localctx.operation = this.match(CalculadoraParser.CLOSE);
+	            this.expr(0);
 	            this.state = 23;
-	            this.expr(6);
+	            this.match(CalculadoraParser.CLOSE);
 	            break;
 
 	        case 4:
@@ -236,8 +236,8 @@ export default class CalculadoraParser extends antlr4.Parser {
 	                    localctx = new NormalContext(this, new ExprContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, CalculadoraParser.RULE_expr);
 	                    this.state = 35;
-	                    if (!( this.precpred(this._ctx, 5))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
+	                    if (!( this.precpred(this._ctx, 7))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
 	                    }
 	                    this.state = 36;
 	                    localctx.operation = this.match(CalculadoraParser.OPEN);

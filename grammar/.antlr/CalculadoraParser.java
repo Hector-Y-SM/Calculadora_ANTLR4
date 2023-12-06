@@ -257,7 +257,7 @@ public class CalculadoraParser extends Parser {
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				{
-				_localctx = new ParenthesisContext(_localctx);
+				_localctx = new ReverseContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
@@ -266,7 +266,9 @@ public class CalculadoraParser extends Parser {
 				setState(11);
 				expr(0);
 				setState(12);
-				match(CLOSE);
+				((ReverseContext)_localctx).operation = match(CLOSE);
+				setState(13);
+				expr(8);
 				}
 				break;
 			case 2:
@@ -274,31 +276,29 @@ public class CalculadoraParser extends Parser {
 				_localctx = new DefaultContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(14);
-				match(OPEN);
 				setState(15);
-				expr(0);
+				match(OPEN);
 				setState(16);
-				((DefaultContext)_localctx).operation = match(DEFAULT);
-				setState(17);
 				expr(0);
+				setState(17);
+				((DefaultContext)_localctx).operation = match(DEFAULT);
 				setState(18);
+				expr(0);
+				setState(19);
 				match(CLOSE);
 				}
 				break;
 			case 3:
 				{
-				_localctx = new ReverseContext(_localctx);
+				_localctx = new ParenthesisContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(20);
-				match(OPEN);
 				setState(21);
-				expr(0);
+				match(OPEN);
 				setState(22);
-				((ReverseContext)_localctx).operation = match(CLOSE);
+				expr(0);
 				setState(23);
-				expr(6);
+				match(CLOSE);
 				}
 				break;
 			case 4:
@@ -379,7 +379,7 @@ public class CalculadoraParser extends Parser {
 						_localctx = new NormalContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(35);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(36);
 						((NormalContext)_localctx).operation = match(OPEN);
 						setState(37);
@@ -422,7 +422,7 @@ public class CalculadoraParser extends Parser {
 		case 1:
 			return precpred(_ctx, 3);
 		case 2:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 7);
 		}
 		return true;
 	}
@@ -443,19 +443,19 @@ public class CalculadoraParser extends Parser {
 		"\u0001\u0000\u0000\u0000\u0007\b\u0001\u0000\u0000\u0000\b\u0001\u0001"+
 		"\u0000\u0000\u0000\t\n\u0006\u0001\uffff\uffff\u0000\n\u000b\u0005\u0006"+
 		"\u0000\u0000\u000b\f\u0003\u0002\u0001\u0000\f\r\u0005\u0007\u0000\u0000"+
-		"\r\u001c\u0001\u0000\u0000\u0000\u000e\u000f\u0005\u0006\u0000\u0000\u000f"+
-		"\u0010\u0003\u0002\u0001\u0000\u0010\u0011\u0005\u0002\u0000\u0000\u0011"+
-		"\u0012\u0003\u0002\u0001\u0000\u0012\u0013\u0005\u0007\u0000\u0000\u0013"+
-		"\u001c\u0001\u0000\u0000\u0000\u0014\u0015\u0005\u0006\u0000\u0000\u0015"+
-		"\u0016\u0003\u0002\u0001\u0000\u0016\u0017\u0005\u0007\u0000\u0000\u0017"+
-		"\u0018\u0003\u0002\u0001\u0006\u0018\u001c\u0001\u0000\u0000\u0000\u0019"+
+		"\r\u000e\u0003\u0002\u0001\b\u000e\u001c\u0001\u0000\u0000\u0000\u000f"+
+		"\u0010\u0005\u0006\u0000\u0000\u0010\u0011\u0003\u0002\u0001\u0000\u0011"+
+		"\u0012\u0005\u0002\u0000\u0000\u0012\u0013\u0003\u0002\u0001\u0000\u0013"+
+		"\u0014\u0005\u0007\u0000\u0000\u0014\u001c\u0001\u0000\u0000\u0000\u0015"+
+		"\u0016\u0005\u0006\u0000\u0000\u0016\u0017\u0003\u0002\u0001\u0000\u0017"+
+		"\u0018\u0005\u0007\u0000\u0000\u0018\u001c\u0001\u0000\u0000\u0000\u0019"+
 		"\u001c\u0005\b\u0000\u0000\u001a\u001c\u0005\t\u0000\u0000\u001b\t\u0001"+
-		"\u0000\u0000\u0000\u001b\u000e\u0001\u0000\u0000\u0000\u001b\u0014\u0001"+
+		"\u0000\u0000\u0000\u001b\u000f\u0001\u0000\u0000\u0000\u001b\u0015\u0001"+
 		"\u0000\u0000\u0000\u001b\u0019\u0001\u0000\u0000\u0000\u001b\u001a\u0001"+
 		"\u0000\u0000\u0000\u001c*\u0001\u0000\u0000\u0000\u001d\u001e\n\u0004"+
 		"\u0000\u0000\u001e\u001f\u0007\u0000\u0000\u0000\u001f)\u0003\u0002\u0001"+
 		"\u0005 !\n\u0003\u0000\u0000!\"\u0007\u0001\u0000\u0000\")\u0003\u0002"+
-		"\u0001\u0004#$\n\u0005\u0000\u0000$%\u0005\u0006\u0000\u0000%&\u0003\u0002"+
+		"\u0001\u0004#$\n\u0007\u0000\u0000$%\u0005\u0006\u0000\u0000%&\u0003\u0002"+
 		"\u0001\u0000&\'\u0005\u0007\u0000\u0000\')\u0001\u0000\u0000\u0000(\u001d"+
 		"\u0001\u0000\u0000\u0000( \u0001\u0000\u0000\u0000(#\u0001\u0000\u0000"+
 		"\u0000),\u0001\u0000\u0000\u0000*(\u0001\u0000\u0000\u0000*+\u0001\u0000"+

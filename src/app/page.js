@@ -10,10 +10,11 @@ const HomePage = () => {
 
   const click = () => {
     const letras = /[a-zA-Z]+$/g //? expresion regular para evitar letras  
+    const numeros = /[0-9]/g
   //const validaciones = /^(\d+|\([^()]+\))(?:[-+*/](\d+|\([^()]+\)))*$/g;
     //console.log(input); 
     
-      if (letras.test(input) || comentarios(input.trim()) === ''){
+      if (letras.test(input) || comentarios(input.trim()) === '' || !numeros.test(input)){
         setError('Ingresa una operacion');
       } else if(!input.includes('=')){
         setError('');
