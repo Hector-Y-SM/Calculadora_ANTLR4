@@ -10,6 +10,7 @@ const UI = ({input, ext, limpiarCaracter, numBtn, limpiarTodo, click, error, his
             className="txtArea_"
             value={input}
             onChange={ext}
+            placeholder="ej. ((5+5)*8)/2"
           />
           <button
             className="btn_digito"

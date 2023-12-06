@@ -6,11 +6,7 @@ expr:
         expr operation=(TIMES|DIV) expr     #timesDiv
         | 
         expr operation=(PLUS|MINUS) expr    #plusSubtraction
-        | 
-        OPEN expr operation=(TIMES|DIV) expr CLOSE #timesDiv1
-        | 
-        OPEN expr operation=(PLUS|MINUS) expr CLOSE #plusSubtraction1
-        | 
+        |  
         OPEN expr operation=CLOSE expr #reverse
         |
         expr operation=OPEN expr CLOSE #normal

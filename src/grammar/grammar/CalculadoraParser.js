@@ -3,23 +3,20 @@
 import antlr4 from 'antlr4';
 import CalculadoraVisitor from './CalculadoraVisitor.js';
 
-const serializedATN = [4,1,10,58,2,0,7,0,2,1,7,1,1,0,4,0,6,8,0,11,0,12,0,
+const serializedATN = [4,1,10,46,2,0,7,0,2,1,7,1,1,0,4,0,6,8,0,11,0,12,0,
 7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,40,8,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,53,8,1,10,1,12,1,56,9,1,1,1,0,1,2,2,
-0,2,0,2,1,0,4,5,2,0,1,1,3,3,65,0,5,1,0,0,0,2,39,1,0,0,0,4,6,3,2,1,0,5,4,
-1,0,0,0,6,7,1,0,0,0,7,5,1,0,0,0,7,8,1,0,0,0,8,1,1,0,0,0,9,10,6,1,-1,0,10,
-11,5,6,0,0,11,12,3,2,1,0,12,13,7,0,0,0,13,14,3,2,1,0,14,15,5,7,0,0,15,40,
-1,0,0,0,16,17,5,6,0,0,17,18,3,2,1,0,18,19,7,1,0,0,19,20,3,2,1,0,20,21,5,
-7,0,0,21,40,1,0,0,0,22,23,5,6,0,0,23,24,3,2,1,0,24,25,5,7,0,0,25,26,3,2,
-1,6,26,40,1,0,0,0,27,28,5,6,0,0,28,29,3,2,1,0,29,30,5,7,0,0,30,40,1,0,0,
-0,31,32,5,6,0,0,32,33,3,2,1,0,33,34,5,2,0,0,34,35,3,2,1,0,35,36,5,7,0,0,
-36,40,1,0,0,0,37,40,5,8,0,0,38,40,5,9,0,0,39,9,1,0,0,0,39,16,1,0,0,0,39,
-22,1,0,0,0,39,27,1,0,0,0,39,31,1,0,0,0,39,37,1,0,0,0,39,38,1,0,0,0,40,54,
-1,0,0,0,41,42,10,10,0,0,42,43,7,0,0,0,43,53,3,2,1,11,44,45,10,9,0,0,45,46,
-7,1,0,0,46,53,3,2,1,10,47,48,10,5,0,0,48,49,5,6,0,0,49,50,3,2,1,0,50,51,
-5,7,0,0,51,53,1,0,0,0,52,41,1,0,0,0,52,44,1,0,0,0,52,47,1,0,0,0,53,56,1,
-0,0,0,54,52,1,0,0,0,54,55,1,0,0,0,55,3,1,0,0,0,56,54,1,0,0,0,4,7,39,52,54];
+1,3,1,28,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,41,8,1,10,1,
+12,1,44,9,1,1,1,0,1,2,2,0,2,0,2,1,0,4,5,2,0,1,1,3,3,51,0,5,1,0,0,0,2,27,
+1,0,0,0,4,6,3,2,1,0,5,4,1,0,0,0,6,7,1,0,0,0,7,5,1,0,0,0,7,8,1,0,0,0,8,1,
+1,0,0,0,9,10,6,1,-1,0,10,11,5,6,0,0,11,12,3,2,1,0,12,13,5,7,0,0,13,14,3,
+2,1,6,14,28,1,0,0,0,15,16,5,6,0,0,16,17,3,2,1,0,17,18,5,7,0,0,18,28,1,0,
+0,0,19,20,5,6,0,0,20,21,3,2,1,0,21,22,5,2,0,0,22,23,3,2,1,0,23,24,5,7,0,
+0,24,28,1,0,0,0,25,28,5,8,0,0,26,28,5,9,0,0,27,9,1,0,0,0,27,15,1,0,0,0,27,
+19,1,0,0,0,27,25,1,0,0,0,27,26,1,0,0,0,28,42,1,0,0,0,29,30,10,8,0,0,30,31,
+7,0,0,0,31,41,3,2,1,9,32,33,10,7,0,0,33,34,7,1,0,0,34,41,3,2,1,8,35,36,10,
+5,0,0,36,37,5,6,0,0,37,38,3,2,1,0,38,39,5,7,0,0,39,41,1,0,0,0,40,29,1,0,
+0,0,40,32,1,0,0,0,40,35,1,0,0,0,41,44,1,0,0,0,42,40,1,0,0,0,42,43,1,0,0,
+0,43,3,1,0,0,0,44,42,1,0,0,0,4,7,27,40,42];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -58,9 +55,9 @@ export default class CalculadoraParser extends antlr4.Parser {
     expr_sempred(localctx, predIndex) {
     	switch(predIndex) {
     		case 0:
-    			return this.precpred(this._ctx, 10);
+    			return this.precpred(this._ctx, 8);
     		case 1:
-    			return this.precpred(this._ctx, 9);
+    			return this.precpred(this._ctx, 7);
     		case 2:
     			return this.precpred(this._ctx, 5);
     		default:
@@ -115,12 +112,12 @@ export default class CalculadoraParser extends antlr4.Parser {
 	    var _la = 0;
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 39;
+	        this.state = 27;
 	        this._errHandler.sync(this);
 	        var la_ = this._interp.adaptivePredict(this._input,1,this._ctx);
 	        switch(la_) {
 	        case 1:
-	            localctx = new TimesDiv1Context(this, localctx);
+	            localctx = new ReverseContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
 
@@ -129,106 +126,58 @@ export default class CalculadoraParser extends antlr4.Parser {
 	            this.state = 11;
 	            this.expr(0);
 	            this.state = 12;
-	            localctx.operation = this._input.LT(1);
-	            _la = this._input.LA(1);
-	            if(!(_la===4 || _la===5)) {
-	                localctx.operation = this._errHandler.recoverInline(this);
-	            }
-	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
-	            }
+	            localctx.operation = this.match(CalculadoraParser.CLOSE);
 	            this.state = 13;
-	            this.expr(0);
-	            this.state = 14;
-	            this.match(CalculadoraParser.CLOSE);
+	            this.expr(6);
 	            break;
 
 	        case 2:
-	            localctx = new PlusSubtraction1Context(this, localctx);
+	            localctx = new ParenthesisContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 16;
+	            this.state = 15;
 	            this.match(CalculadoraParser.OPEN);
+	            this.state = 16;
+	            this.expr(0);
 	            this.state = 17;
-	            this.expr(0);
-	            this.state = 18;
-	            localctx.operation = this._input.LT(1);
-	            _la = this._input.LA(1);
-	            if(!(_la===1 || _la===3)) {
-	                localctx.operation = this._errHandler.recoverInline(this);
-	            }
-	            else {
-	            	this._errHandler.reportMatch(this);
-	                this.consume();
-	            }
-	            this.state = 19;
-	            this.expr(0);
-	            this.state = 20;
 	            this.match(CalculadoraParser.CLOSE);
 	            break;
 
 	        case 3:
-	            localctx = new ReverseContext(this, localctx);
-	            this._ctx = localctx;
-	            _prevctx = localctx;
-	            this.state = 22;
-	            this.match(CalculadoraParser.OPEN);
-	            this.state = 23;
-	            this.expr(0);
-	            this.state = 24;
-	            localctx.operation = this.match(CalculadoraParser.CLOSE);
-	            this.state = 25;
-	            this.expr(6);
-	            break;
-
-	        case 4:
-	            localctx = new ParenthesisContext(this, localctx);
-	            this._ctx = localctx;
-	            _prevctx = localctx;
-	            this.state = 27;
-	            this.match(CalculadoraParser.OPEN);
-	            this.state = 28;
-	            this.expr(0);
-	            this.state = 29;
-	            this.match(CalculadoraParser.CLOSE);
-	            break;
-
-	        case 5:
 	            localctx = new DefaultContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 31;
+	            this.state = 19;
 	            this.match(CalculadoraParser.OPEN);
-	            this.state = 32;
+	            this.state = 20;
 	            this.expr(0);
-	            this.state = 33;
+	            this.state = 21;
 	            localctx.operation = this.match(CalculadoraParser.DEFAULT);
-	            this.state = 34;
+	            this.state = 22;
 	            this.expr(0);
-	            this.state = 35;
+	            this.state = 23;
 	            this.match(CalculadoraParser.CLOSE);
 	            break;
 
-	        case 6:
+	        case 4:
 	            localctx = new NumberContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 37;
+	            this.state = 25;
 	            this.match(CalculadoraParser.NUMBER);
 	            break;
 
-	        case 7:
+	        case 5:
 	            localctx = new DecimalContext(this, localctx);
 	            this._ctx = localctx;
 	            _prevctx = localctx;
-	            this.state = 38;
+	            this.state = 26;
 	            this.match(CalculadoraParser.DECIMAL);
 	            break;
 
 	        }
 	        this._ctx.stop = this._input.LT(-1);
-	        this.state = 54;
+	        this.state = 42;
 	        this._errHandler.sync(this);
 	        var _alt = this._interp.adaptivePredict(this._input,3,this._ctx)
 	        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
@@ -237,18 +186,18 @@ export default class CalculadoraParser extends antlr4.Parser {
 	                    this.triggerExitRuleEvent();
 	                }
 	                _prevctx = localctx;
-	                this.state = 52;
+	                this.state = 40;
 	                this._errHandler.sync(this);
 	                var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
 	                switch(la_) {
 	                case 1:
 	                    localctx = new TimesDivContext(this, new ExprContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, CalculadoraParser.RULE_expr);
-	                    this.state = 41;
-	                    if (!( this.precpred(this._ctx, 10))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 10)");
+	                    this.state = 29;
+	                    if (!( this.precpred(this._ctx, 8))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 8)");
 	                    }
-	                    this.state = 42;
+	                    this.state = 30;
 	                    localctx.operation = this._input.LT(1);
 	                    _la = this._input.LA(1);
 	                    if(!(_la===4 || _la===5)) {
@@ -258,18 +207,18 @@ export default class CalculadoraParser extends antlr4.Parser {
 	                    	this._errHandler.reportMatch(this);
 	                        this.consume();
 	                    }
-	                    this.state = 43;
-	                    this.expr(11);
+	                    this.state = 31;
+	                    this.expr(9);
 	                    break;
 
 	                case 2:
 	                    localctx = new PlusSubtractionContext(this, new ExprContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, CalculadoraParser.RULE_expr);
-	                    this.state = 44;
-	                    if (!( this.precpred(this._ctx, 9))) {
-	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 9)");
+	                    this.state = 32;
+	                    if (!( this.precpred(this._ctx, 7))) {
+	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
 	                    }
-	                    this.state = 45;
+	                    this.state = 33;
 	                    localctx.operation = this._input.LT(1);
 	                    _la = this._input.LA(1);
 	                    if(!(_la===1 || _la===3)) {
@@ -279,28 +228,28 @@ export default class CalculadoraParser extends antlr4.Parser {
 	                    	this._errHandler.reportMatch(this);
 	                        this.consume();
 	                    }
-	                    this.state = 46;
-	                    this.expr(10);
+	                    this.state = 34;
+	                    this.expr(8);
 	                    break;
 
 	                case 3:
 	                    localctx = new NormalContext(this, new ExprContext(this, _parentctx, _parentState));
 	                    this.pushNewRecursionContext(localctx, _startState, CalculadoraParser.RULE_expr);
-	                    this.state = 47;
+	                    this.state = 35;
 	                    if (!( this.precpred(this._ctx, 5))) {
 	                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
 	                    }
-	                    this.state = 48;
+	                    this.state = 36;
 	                    localctx.operation = this.match(CalculadoraParser.OPEN);
-	                    this.state = 49;
+	                    this.state = 37;
 	                    this.expr(0);
-	                    this.state = 50;
+	                    this.state = 38;
 	                    this.match(CalculadoraParser.CLOSE);
 	                    break;
 
 	                } 
 	            }
-	            this.state = 56;
+	            this.state = 44;
 	            this._errHandler.sync(this);
 	            _alt = this._interp.adaptivePredict(this._input,3,this._ctx);
 	        }
@@ -545,102 +494,6 @@ class DefaultContext extends ExprContext {
 }
 
 CalculadoraParser.DefaultContext = DefaultContext;
-
-class TimesDiv1Context extends ExprContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        this.operation = null;;
-        super.copyFrom(ctx);
-    }
-
-	OPEN() {
-	    return this.getToken(CalculadoraParser.OPEN, 0);
-	};
-
-	expr = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExprContext);
-	    } else {
-	        return this.getTypedRuleContext(ExprContext,i);
-	    }
-	};
-
-	CLOSE() {
-	    return this.getToken(CalculadoraParser.CLOSE, 0);
-	};
-
-	TIMES() {
-	    return this.getToken(CalculadoraParser.TIMES, 0);
-	};
-
-	DIV() {
-	    return this.getToken(CalculadoraParser.DIV, 0);
-	};
-
-	accept(visitor) {
-	    if ( visitor instanceof CalculadoraVisitor ) {
-	        return visitor.visitTimesDiv1(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-CalculadoraParser.TimesDiv1Context = TimesDiv1Context;
-
-class PlusSubtraction1Context extends ExprContext {
-
-    constructor(parser, ctx) {
-        super(parser);
-        this.operation = null;;
-        super.copyFrom(ctx);
-    }
-
-	OPEN() {
-	    return this.getToken(CalculadoraParser.OPEN, 0);
-	};
-
-	expr = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(ExprContext);
-	    } else {
-	        return this.getTypedRuleContext(ExprContext,i);
-	    }
-	};
-
-	CLOSE() {
-	    return this.getToken(CalculadoraParser.CLOSE, 0);
-	};
-
-	PLUS() {
-	    return this.getToken(CalculadoraParser.PLUS, 0);
-	};
-
-	MINUS() {
-	    return this.getToken(CalculadoraParser.MINUS, 0);
-	};
-
-	accept(visitor) {
-	    if ( visitor instanceof CalculadoraVisitor ) {
-	        return visitor.visitPlusSubtraction1(this);
-	    } else {
-	        return visitor.visitChildren(this);
-	    }
-	}
-
-
-}
-
-CalculadoraParser.PlusSubtraction1Context = PlusSubtraction1Context;
 
 class ReverseContext extends ExprContext {
 

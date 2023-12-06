@@ -14,10 +14,8 @@ const HomePage = () => {
     //console.log(input); 
     
       if (letras.test(input) || comentarios(input.trim()) === ''){
-         setInput('');
-         setError('Ingresa una operacion');
-      } else {
-        //console.log('si entro')
+        setError('Ingresa una operacion');
+      } else if(!input.includes('=')){
         setError('');
         const limpiar = comentarios(input).trim(); //borrar los espacios en blanco para evitar errores
 
@@ -29,12 +27,14 @@ const HomePage = () => {
         });
   
         setInput(resultadoCadena.join('\n'));
-    } 
+    } else {
+      setError('caracteres invalidos: "="');
+    }
   }
   
   const limpiarTodo = () => { 
-    setInput('')
-    setError('') 
+    setInput('');
+    setError(''); 
   }
   const numBtn = (txt) => { setInput((prevInput) => prevInput + txt); }
   const limpiarDigito = () => { setInput((prevInput) => prevInput.slice(0, -1)); }
