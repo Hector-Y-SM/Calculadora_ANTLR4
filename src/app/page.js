@@ -9,27 +9,28 @@ const HomePage = () => {
   const [error, setError] = useState('');
 
   const click = () => {
-    const letras = /[a-zA-Z]+$/g //? expresion regular para evitar letras  
-    const numeros = /[0-9]/g
-  //const validaciones = /^(\d+|\([^()]+\))(?:[-+*/](\d+|\([^()]+\)))*$/g;
-    //console.log(input); 
-    
-      if (letras.test(input) || comentarios(input.trim()) === '' || !numeros.test(input)){
-        setError('Ingresa una operacion');
-      } else if(!input.includes('=')){
-        setError('');
-        const limpiar = comentarios(input).trim(); //borrar los espacios en blanco para evitar errores
+    const letras = /[a-zA-Z]/g; // Expresión regular para evitar letras
+    const numeros = /\d/g;
+    const pass = comentarios(input);
 
-        const expresiones = limpiar.split('\n');
-        const aux = expresiones.map(expresion => analizarLexico(expresion));
-  
-        const resultadoCadena = aux.map((valor, indice) => {
-          return `${expresiones[indice]} = ${valor}`;
-        });
-  
-        setInput(resultadoCadena.join('\n'));
+    if (letras.test(pass)) {
+      setError('No se pueden ingresar letras');
+    } else if (comentarios(input.trim()) === '' || !numeros.test(input)) {
+      setError('Ingresa una operación');
+    } else if (!input.includes('=')) {
+      setError('');
+
+      const limpiar = comentarios(input).trim(); // Borrar los espacios en blanco
+      const expresiones = limpiar.split('\n').filter(expresion => expresion.trim() !== ''); // Borrar líneas en blanco
+      const aux = expresiones.map(expresion => analizarLexico(expresion));
+
+      const resultadoCadena = aux.map((valor, indice) => {
+        return `${expresiones[indice]} = ${valor}`;
+      });
+
+      setInput(resultadoCadena.join('\n'));
     } else {
-      setError('caracteres invalidos: "="');
+      setError('Caracteres inválidos: "="');
     }
   }
   

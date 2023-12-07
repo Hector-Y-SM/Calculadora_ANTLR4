@@ -11,6 +11,5 @@ export function comentarios(text) {
   
     //? comentarios de bloque
     sinComentarios = sinComentarios.replace(/\/\*[\s\S]*?\*\//g, '');
-  
     return sinComentarios;
   }
